@@ -1,23 +1,23 @@
 import {Case} from './case.model';
 
-const PIN_IN_0: number = 0;
-const PIN_IN_1: number = 1;
-const PIN_IN_2: number = 2;
-const PIN_IN_3: number = 3;
-const PIN_IN_4: number = 4;
-const PIN_IN_5: number = 5;
-const PIN_IN_6: number = 6;
-const PIN_IN_7: number = 7;
-const PIN_IN_8: number = 8;
-const PIN_IN_9: number = 9;
+const PIN_IN_0: number = 2;
+const PIN_IN_1: number = 3;
+const PIN_IN_2: number = 4;
+const PIN_IN_3: number = 17;
+const PIN_IN_4: number = 27;
+const PIN_IN_5: number = 22;
+const PIN_IN_6: number = 10;
+const PIN_IN_7: number = 9;
+const PIN_IN_8: number = 11;
+const PIN_IN_9: number = 7;
 
-const PIN_OUT_0: number = 0;
-const PIN_OUT_1: number = 1;
-const PIN_OUT_2: number = 2;
-const PIN_OUT_3: number = 4;
-const PIN_OUT_4: number = 5;
-const PIN_OUT_5: number = 6;
-const PIN_OUT_6: number = 7;
+const PIN_OUT_0: number = 14;
+const PIN_OUT_1: number = 15;
+const PIN_OUT_2: number = 18;
+const PIN_OUT_3: number = 23;
+const PIN_OUT_4: number = 24;
+const PIN_OUT_5: number = 25;
+const PIN_OUT_6: number = 8;
 
 export const outs: number[] = [
     PIN_OUT_0, PIN_OUT_1, PIN_OUT_2, PIN_OUT_3, PIN_OUT_4, PIN_OUT_5, PIN_OUT_6
@@ -28,7 +28,7 @@ export const ins: number[] = [
 
 export class Target {
 
-    public cases: {[number]: Case[]} = {};
+    public cases: Case[][];
 
     public constructor() {
         this.cases[PIN_OUT_0] = [

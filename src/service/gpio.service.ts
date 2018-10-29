@@ -1,4 +1,4 @@
-const Gpio = require('onoff').Gpio;
+import {Gpio} from 'onoff';
 
 export enum GPIOState {
     HIGH = 1,
@@ -22,7 +22,8 @@ export class GPIOService {
     public inputs: Gpio[];
 
     public constructor() {
-
+        this.outputs = [];
+        this.inputs = [];
     }
 
     public setMode(mode: GPIOMode): void {
