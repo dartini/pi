@@ -28,7 +28,7 @@ export const ins: number[] = [
 
 export class Target {
 
-    public cases: Case[][];
+    public cases: Case[][] = [];
 
     public constructor() {
         this.cases[PIN_OUT_0] = [

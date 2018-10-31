@@ -1,4 +1,4 @@
-import {Gpio} from 'onoff';
+// import {Gpio} from 'onoff';
 
 export enum GPIOState {
     HIGH = 1,
@@ -17,9 +17,9 @@ export enum GPIODirection {
 
 export class GPIOService {
 
-    public outputs: Gpio[];
+    public outputs: any[];
 
-    public inputs: Gpio[];
+    public inputs: any[];
 
     public constructor() {
         this.outputs = [];
@@ -31,7 +31,12 @@ export class GPIOService {
     }
 
     public setup(pin: number, direction: GPIODirection): void {
-        const gpio = new Gpio(pin, direction);
+        const gpio = {
+            pin: pin,
+            direction: direction,
+            write: () => void 0,
+            readSync: () => 1
+        };
 
         switch (direction) {
             case GPIODirection.INPUT:
@@ -45,16 +50,16 @@ export class GPIOService {
     }
 
     public output(pin: number, state: GPIOState): void {
-        if (this.outputs[pin]) {
-            throw new Error('No GPIO initialized');
+        if (!this.outputs[pin]) {
+            throw new Error('No input GPIO initialized for pin ' + pin);
         }
 
         this.outputs[pin].write(pin, state);
     }
 
     public input(pin: number): GPIOState {
-        if (this.inputs[pin]) {
-            throw new Error('No GPIO initialized');
+        if (!this.inputs[pin]) {
+            throw new Error('No output GPIO initialized for pin ' + pin);
         }
 
         return this.inputs[pin].readSync() === 1 ? GPIOState.HIGH : GPIOState.LOW;

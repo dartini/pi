@@ -21,8 +21,7 @@
   },
   "homepage": "https://github.com/dartini/pi#readme",
   "dependencies": {
-    "onoff": "^3.2.2",
-    "sleep": "^5.2.3"
+    "onoff": "^3.2.2"
   },
   "devDependencies": {
     "reflect-metadata": "^0.1.12",

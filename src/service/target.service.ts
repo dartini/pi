@@ -1,7 +1,7 @@
 import {GPIODirection, GPIOService, GPIOState} from './gpio.service';
 import {ins, outs, Target} from '../model/target.model';
 import {Case} from '../model/case.model';
-import {sleep}  from 'sleep';
+import {sleep} from '../util';
 
 export class TargetService {
 
@@ -25,8 +25,9 @@ export class TargetService {
 
             this.target.cases[out].forEach((c: Case) => {
                if (this.gpioService.input(c.pinIn) === GPIOState.HIGH) {
+                   console.log('touch', c);
                    casee = c;
-                   sleep.msleep(800);
+                   sleep(800);
                }
             });
 
