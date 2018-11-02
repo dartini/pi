@@ -1,5 +1,3 @@
-import {Gpio} from 'pigpio';
-
 export enum GPIOState {
     HIGH = 1,
     LOW = 0
@@ -15,6 +13,15 @@ export enum GPIODirection {
     INPUT = Gpio.INPUT
 }
 
+class Gpio {
+
+    public constructor(public pin: number, public conf: any) {
+
+    }
+
+    public digitalWrite(pin, )
+}
+
 export class GPIOService {
 
     public outputs: Gpio[];
@@ -26,16 +33,12 @@ export class GPIOService {
         this.inputs = [];
     }
 
-    public setMode(mode: GPIOMode): void {
-
-    }
-
     public setup(pin: number, direction: GPIODirection): void {
         const gpio = new Gpio(
             pin,
             {
                 mode: direction,
-                pullUpDown: Gpio.PUD_DOWN
+                pullUpDown: 'PUD_DOWN'
             }
         );
 

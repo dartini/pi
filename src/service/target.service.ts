@@ -24,16 +24,15 @@ export class TargetService {
             this.gpioService.output(out, GPIOState.HIGH);
 
             this.target.cases[out].forEach((c: Case) => {
-               if (this.gpioService.input(c.pinIn) === GPIOState.HIGH) {
-                   console.log('touch', c);
-                   casee = c;
-                   sleep(800);
-               }
+                if (this.gpioService.input(c.pinIn) === GPIOState.HIGH) {
+                    casee = c;
+                    sleep(800);
+                }
             });
 
             this.gpioService.output(out, GPIOState.LOW);
         });
 
-        return casee
+        return casee;
     }
 }

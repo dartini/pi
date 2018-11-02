@@ -1,0 +1,6 @@
+{
+  "extend": "./tsconfig.json",
+  "exclude": [
+    "src/service/gpio.service.ts"
+  ]
+}
