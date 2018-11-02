@@ -1,12 +1,13 @@
 import {TargetService} from './service/target.service';
 import {GPIOService} from './service/gpio.service';
+import {Case} from './model/case.model';
 
 const gpioService: GPIOService = new GPIOService();
 const targetService: TargetService = new TargetService(gpioService);
 
-let i: number = 1000;
-
-while (i > 0) {
-    console.log('tick ' + i, targetService.detectDart());
-    i--;
+while (true) {
+    const c: Case = targetService.detectDart();
+    if (c) {
+        console.log(c);
+    }
 }

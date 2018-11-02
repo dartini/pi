@@ -5,11 +5,6 @@ export enum GPIOState {
     LOW = 0
 }
 
-export enum GPIOMode {
-    BCM,
-    BOARD
-}
-
 export enum GPIODirection {
     OUTPUT = Gpio.OUTPUT,
     INPUT = Gpio.INPUT
@@ -24,10 +19,6 @@ export class GPIOService {
     public constructor() {
         this.outputs = [];
         this.inputs = [];
-    }
-
-    public setMode(mode: GPIOMode): void {
-
     }
 
     public setup(pin: number, direction: GPIODirection): void {
