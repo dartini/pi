@@ -21,16 +21,16 @@ export class TargetService {
         let casee: Case = null;
 
         outs.forEach((out: number) => {
-            this.gpioService.output(out, GPIOState.HIGH);
+            this.gpioService.output(out, GPIOState.LOW);
 
             this.target.cases[out].forEach((c: Case) => {
-                if (this.gpioService.input(c.pinIn) === GPIOState.HIGH) {
+                if (this.gpioService.input(c.pinIn) === GPIOState.LOW) {
                     casee = c;
                     sleep(800);
                 }
             });
 
-            this.gpioService.output(out, GPIOState.LOW);
+            this.gpioService.output(out, GPIOState.HIGH);
         });
 
         return casee;

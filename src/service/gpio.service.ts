@@ -26,7 +26,7 @@ export class GPIOService {
             pin,
             {
                 mode: direction,
-                pullUpDown: Gpio.PUD_DOWN
+                pullUpDown: Gpio.PUD_UP
             }
         );
 
@@ -37,7 +37,7 @@ export class GPIOService {
 
             case GPIODirection.OUTPUT:
                 this.outputs[pin] = gpio;
-                gpio.digitalWrite(GPIOState.LOW);
+                gpio.digitalWrite(GPIOState.HIGH);
                 break;
         }
     }

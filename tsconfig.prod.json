@@ -1,6 +1,6 @@
 {
-  "extend": "./tsconfig.json",
+  "extends": "./tsconfig.json",
   "exclude": [
-    "src/service/simulator.service.ts"
+    "src/index-simulated.ts"
   ]
 }
