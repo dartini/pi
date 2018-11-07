@@ -21,7 +21,9 @@
     "url": "https://github.com/dartini/pi/issues"
   },
   "homepage": "https://github.com/dartini/pi#readme",
-  "dependencies": {},
+  "dependencies": {
+    "firebase-admin": "^6.1.0"
+  },
   "devDependencies": {
     "@types/node": "^10.12.2",
     "reflect-metadata": "^0.1.12",

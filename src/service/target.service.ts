@@ -12,7 +12,7 @@ export class TargetService {
             this.gpioService.setup(out, GPIODirection.OUTPUT);
         });
 
-        ins.forEach((input: number) =>{
+        ins.forEach((input: number) => {
             this.gpioService.setup(input, GPIODirection.INPUT);
         });
     }

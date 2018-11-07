@@ -1,11 +1,8 @@
 {
-  "compilerOptions": {
-    "types": ["node"]
-  },
   "extends": "./tsconfig.json",
   "exclude": [
     "src/index.ts",
-    "src/service/gpio.service.ts",
-    "src/service/target.service.ts"
+    "src/service/target.service.ts",
+    "src/service/gpio.service.ts"
   ]
 }
