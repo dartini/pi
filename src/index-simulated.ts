@@ -1,59 +1,78 @@
 import {Target} from './model/target.model';
-import * as admin from 'firebase-admin';
-
-const readline = require('readline');
-const os = require('os');
-
-const settings = require(process.env.FIRESTORE_PI_CONFIGURATION);
-admin.initializeApp({
-  credential: admin.credential.cert(settings.keyFilename),
-  databaseURL: 'https://dartini-5eb20.firebaseio.com'
-});
-const db = admin.firestore();
-db.settings({timestampsInSnapshots: true});
-
-db.collection('users').doc('EQ5mAwOe1taa4VITGtISrmZnwgF3').get().then((r) => console.log(r)).catch((err) => console.log(err));
+import * as readline from 'readline';
+import * as os from 'os';
+import {FirestoreService} from './service/firestore.service';
+import {green, yellow} from 'colors/safe';
 
 const target: Target = new Target();
 let value: number = 0;
 let multiple: number = 1;
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+let rl = null;
+
+const settings = require(process.env.FIRESTORE_PI_CONFIGURATION);
+const firestoreService: FirestoreService = new FirestoreService(
+    settings.databaseUrl,
+    settings.keyFilename,
+    os.hostname()
+);
+
+firestoreService.init().subscribe(
+    () => init()
+);
+
+
+function init() {
+    rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    tapeCase();
+}
 
 function tapeCase() {
-    rl.question('Tap a case to simulate between 1 and 20 or 25 or 50 : ', (c: string) => {
+    rl.question(green('Tap a case to simulate between 1 and 20, 25, 50 or exit : '), (c: string) => {
+        if (c === 'exit') {
+            rl.close();
+            process.exit(0);
+        }
+
         const caseNumber = parseInt(c, 10);
         if ((caseNumber > 0 && caseNumber < 21) || caseNumber === 25 || caseNumber === 50) {
             value = caseNumber;
-            if (caseNumber !== 25 && caseNumber !== 50) {
+            if (value !== 25 && value !== 50) {
               tapeMultiple();
+            } else {
+                if (value === 50) {
+                    value = 25;
+                    multiple = 2;
+                }
+                processCase();
             }
         } else {
-            console.log('Bad case !!');
+            console.warn(yellow('Bad case !!'));
             tapeCase();
         }
     });
 }
 
 function tapeMultiple() {
-    rl.question('Tap a multiple to simulate between 1 and 3 : ', (m: string) => {
+    rl.question(green('Tap a multiple to simulate between 1 and 3 : '), (m: string) => {
         const multipleNumber = parseInt(m, 10);
         if ((multipleNumber > 0 && multipleNumber < 4)) {
             multiple = multipleNumber;
+            processCase();
         } else {
-            console.log('Bad case !!');
-            tapeCase();
+            console.warn(yellow('Bad multiple !!'));
+            tapeMultiple();
         }
     });
 }
 
 function processCase() {
-
+    firestoreService.insertDart(value, multiple).subscribe(
+        () => void 0,
+        () => void 0,
+        () => tapeCase()
+    );
 }
-
-tapeCase();
-
-process.exit(0);
