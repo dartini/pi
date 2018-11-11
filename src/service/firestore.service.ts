@@ -1,4 +1,4 @@
-import {DocumentReference, Firestore} from "@google-cloud/firestore";
+import {DocumentReference, Firestore} from '@google-cloud/firestore';
 import * as admin from 'firebase-admin';
 import {Observable} from 'rxjs';
 import {fromPromise} from 'rxjs/internal-compatibility';

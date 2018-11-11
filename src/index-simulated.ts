@@ -1,10 +1,8 @@
-import {Target} from './model/target.model';
 import * as readline from 'readline';
 import * as os from 'os';
 import {FirestoreService} from './service/firestore.service';
 import {green, yellow} from 'colors/safe';
 
-const target: Target = new Target();
 let value: number = 0;
 let multiple: number = 1;
 

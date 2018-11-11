@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:simulator": "npm run clean && tsc-watch --project tsconfig.dev.json --onSuccess \"node ./dist/index-simulated.js\"",
+    "start:simulator": "npm run clean && tsc-watch --project tsconfig.dev.json --outDir ./dist --onSuccess \"node ./dist/index-simulated.js\"",
     "start": "npm run clean && tsc-watch --project . --outDir ./dist --onSuccess \"node ./dist/index.js\"",
     "test": "mocha -r ts-node/register test/**/*.ts",
     "clean": "rm -R -f dist",
